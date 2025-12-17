@@ -1,0 +1,15 @@
+name: flask
+on: [push]
+jobs:
+    dev:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+        # 2. Configura el entorno de Docker
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
+        # 3. Intenta construir la imagen (esto valida tu Dockerfile y requirements.txt)
+            - name: Build Docker image
+              run: |
+                sudo docker compose up --build
